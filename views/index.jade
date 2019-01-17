@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  div.github-fork-ribbon-wrapper.right
+    div.github-fork-ribbon
+      a(href='https://github.com/CleverCloud/demo-nodejs-postgres-rest') Fork me on GitHub
+
+  nav.navbar.navbar-default( role="navigation" )
+    .navbar-header
+      a.navbar-brand(href="#") #{title} 
+
+  form.form-inline(align="center" id="createForm" method="post" action="/values")
+    div.form-group
+      input.form-control(type="text" name="value" id="value" placeholder="Value" maxlength=32)
+      button.btn.btn-success(type="submit" id="create") Submit
+
+  br
+
+  div(align="center")
+    ul.list-group(id="list" style="width:400px")
+      li.list-group-item.active Values
+      each val, uuid in values
+        li.list-group-item(id=uuid)
+          div(align="right" style="float:right")
+            button.btn.btn-danger.btn-xs(id="btn-" + uuid onClick="deleteItem(this.id)") Delete
+          div(align="left")= val
+
+  div.modal.fade.modal-error(tabindex="-1" role="dialog" aria-labelledby="errorModal" id="errorModal")
+    div.modal-dialog
+      div.modal-content
+        div.modal-header
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+          h4.modal-title(id="errorModal") Error
+        div.modal-body(id="errorField")
+        div.modal-footer
+          button.btn.btn-danger.btn-sm(type="button" data-dismiss="modal") Close
