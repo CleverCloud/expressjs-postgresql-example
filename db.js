@@ -5,7 +5,7 @@ var pool;
 var createTableText = `
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
-CREATE TEMP TABLE IF NOT EXISTS values (
+CREATE TABLE IF NOT EXISTS values (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   data JSONB
 );
