@@ -3,10 +3,9 @@ var statsd = require('./statsd');
 var pool;
 
 var createTableText = `
-CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 CREATE TABLE IF NOT EXISTS values (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  id SERIAL PRIMARY KEY,
   data JSONB
 );
 `;
