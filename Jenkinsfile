@@ -7,8 +7,9 @@ pipeline {
   }
   stages {
     stage('build') {
-      clever version
+      steps {
+        sh 'clever version'
+      }
     }
-
   }
 }
