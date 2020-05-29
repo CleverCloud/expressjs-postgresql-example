@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-
-  }
+  agent { label 'clever-ci'}
   stages {
     stage('build') {
       steps {
