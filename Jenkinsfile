@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'npm install -g clever-tools'
+        sh 'nvm list'
       }
     }
 
