@@ -9,10 +9,11 @@ block content
     .navbar-header
       a.navbar-brand(href="#") #{title} 🚀🔥
 
-  form.form-inline(align="center" id="createForm" method="post" action="/values")
-    div.form-group
-      input.form-control(type="text" name="value" id="value" placeholder="Value" maxlength=32)
-      button.btn.btn-success(type="submit" id="create") Submit
+  div(align="center")
+    form.form-inline(align="center" id="createForm" method="post" action="/values")
+      div.form-group
+        input.form-control(type="text" name="value" id="value" placeholder="Value" maxlength=32)
+        button.btn.btn-success(type="submit" id="create") Submit
 
   br
 
