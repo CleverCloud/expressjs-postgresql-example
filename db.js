@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS values (
 module.exports = {
     connectDB : function() {
         pool = new pg.Pool({
-            connectionString:  process.env.POSTGRESQL_ADDON_URI,
+            connectionString:  process.env.POSTGRESQL_ADDON_DIRECT_URI,
         })
         pool.query(createTableText, [], (err, res) => {
             if (err) {
