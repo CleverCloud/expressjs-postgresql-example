@@ -9,7 +9,7 @@ Then create a PostgreSQL add-on and link it to your application, either via the 
 
 ## Direct port and host
 
-Since this application can't run without connecting to a DB, ensure connections are maintained while deploying by enabling direct port and host on your PostgreSQL add-on before deploying this app:
+Since this application can't run without connecting to a DB, ensure connections are maintained while deploying by enabling direct port and host on your PostgreSQL add-on:
 
 ![direct host and port creation on Clever Cloud console](.github/assets/direct-host.png)
 
