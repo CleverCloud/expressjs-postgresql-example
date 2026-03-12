@@ -1,3 +1,3 @@
-const statsd = require('node-statsd');
-const client = new statsd();
-module.exports = client;
+import StatsD from "hot-shots";
+const client = new StatsD();
+export default client;

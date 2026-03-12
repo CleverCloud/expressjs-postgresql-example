@@ -1,48 +1,27 @@
-var express = require('express');
-var pg = require('../db');
+import express from "express";
+import { getVal, sendVal, delVal } from "../db.js";
 
-var router = express.Router();
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  pg.getVal(res);
+router.get("/", async (req, res) => {
+  await getVal(res);
 });
 
-router.get('/prime', function(req, res) {
-  function mySlowFunction(baseNumber) {
-    console.time('mySlowFunction');
-    let result = 0;	
-    for (var i = Math.pow(baseNumber, 7); i >= 0; i--) {
-      result += Math.atan(i) * Math.tan(i);
-    };
-    console.timeEnd('mySlowFunction');
+router.post("/values", async (req, res) => {
+  const val = req.body?.value;
+  if (!val) {
+    return res.json({ status: "error", value: "Value undefined" });
   }
-
-  var numero = mySlowFunction(12); // higher number => more iterations => slower
-  res.send(JSON.stringify({status: "ok", value:numero}));
+  await sendVal(val, res);
 });
 
-router.post('/values', function(req, res) {
-  res.setHeader('Content-Type', 'application/json');
-  var val = req.body.value;
-
-  if (val === undefined || val === "") {
-    res.send(JSON.stringify({status: "error", value: "Value undefined"}));
-    return
+router.delete("/values/:id", async (req, res) => {
+  const id = req.params.id;
+  if (!id) {
+    return res.json({ status: "error", value: "ID undefined" });
   }
-  pg.sendVal(val, res);
+  await delVal(id);
+  res.json({ status: "ok", value: id });
 });
 
-router.delete('/values/:id', function(req, res) {
-  res.setHeader('Content-Type', 'application/json');
-  var uuid = req.params.id;
-
-  if (uuid === undefined || uuid === "") {
-    res.send(JSON.stringify({status: "error", value: "UUID undefined"}));
-    return
-  }
-  pg.delVal(uuid);
-  res.send(JSON.stringify({status: "ok", value: uuid}));
-});
-
-module.exports = router;
+export default router;
